@@ -1,0 +1,104 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Enrcyption
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+
+            string inpLen = Console.ReadLine();
+            int number = Convert.ToInt32(inpLen);
+
+
+            for (int t = 0; t < number; t++)
+            {
+
+                string input = Console.ReadLine();
+                string input2 = input;
+                int length = input.Length;
+                if (length == 1)
+                {
+                    Console.WriteLine("no answer");
+
+                }
+                else
+                {
+                    char[] inputData = input.ToCharArray();
+
+                    string output = "";
+                    for (int i = 0; i < length - 1; i++)
+                    {
+                        char currChar = inputData[i];
+                        bool isGreatNoFound = false;
+                        char currCharNext = inputData[i + 1];
+                        for (int j = i + 1; j < length; j++)
+                        {
+                            if (currCharNext < inputData[j])
+                            {
+                                isGreatNoFound = true;
+                                output = output + currChar;
+                                break;
+
+                            }
+
+                        }
+                        if (isGreatNoFound != true)
+                        {
+
+                            char d = searchFor(ref inputData, i, length);
+                            string ting = new string(inputData);
+                            string newString = ting.Substring(i + 1);
+                            char[] pitre = newString.ToCharArray();
+                            Array.Sort(pitre);
+                            output = output + d + new string(pitre);
+                            break;
+
+                        }
+
+
+                    }
+                   
+                    if (output == input2)
+                        Console.WriteLine("no answer");
+                    else
+                        Console.WriteLine(output);
+
+
+                }
+            }
+        }
+
+
+        static char searchFor(ref char[] inputData, int i, int n)
+        {
+            int pos = i+1;
+            char thuss;
+            char temp = inputData[i + 1];
+            for (int t = i; t < n; t++)
+            {
+                if (inputData[i] < inputData[t])
+                {
+                    if (inputData[t] < temp)
+                    {
+                        temp = inputData[t];
+                        pos = t;
+                    }
+                }
+            }
+            thuss = inputData[i];
+            inputData[i] = temp;
+            inputData[pos] = thuss;
+
+            return temp;
+
+        }
+
+    }
+}
+
+

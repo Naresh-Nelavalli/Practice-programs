@@ -1,0 +1,81 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Enrcyption
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            
+            string inpLen = Console.ReadLine();
+            int number = Convert.ToInt32(inpLen);
+            
+           
+            for(int i =0;i<number;i++)
+            {
+                int output = 0;
+                Dictionary<long, int> dict = new Dictionary<long, int>();
+                string input = Console.ReadLine();
+                int length = input.Length;
+                for(int j=0;j<length;j++)
+                {
+                    for(int k=1;k<length-j+1;k++)
+                    {
+                        string substring = input.Substring(j, k);
+
+                       // Console.WriteLine(substring);
+                        calcHashcode(substring, dict);
+                        
+                    }
+                }
+
+                foreach (KeyValuePair<long, int> t in dict)
+                {
+                    if (t.Value > 1)
+                    {
+                      //  if (t.Value > 2)
+                            // output += (t.Value * (t.Value-1))/2;
+                     //       output += t.Value;
+                     //   else
+                          //  output += 1;
+                        output+= (t.Value * (t.Value - 1)) / 2;
+
+                    }
+                }
+                Console.WriteLine(output);
+                
+            }
+               
+        }
+
+        static void calcHashcode(string x,Dictionary<long,int> dict)
+        {
+            int strLen = x.Length;
+            long hashcode = 0;
+            char[] inputCH = x.ToCharArray();
+            foreach(char t in inputCH)
+            {
+               //long temp = (long)t * (((long)t+120) * 329);
+                long temp = (long)t * strLen * ((long)t - (long)'a') * ((long)t + (long)'a') + (long)t;
+                hashcode+= temp ; 
+            }
+           
+            if(dict.ContainsKey(hashcode))
+            {
+                dict[hashcode]+=1;
+                //Console.WriteLine(x);
+                //Console.WriteLine(dict[hashcode]);
+            }
+            else
+            {
+                dict.Add(hashcode, 1);
+            }
+        }
+
+    }
+}
+

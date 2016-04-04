@@ -1,0 +1,95 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Enrcyption
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+
+            string count = Console.ReadLine();
+            int count1 = Convert.ToInt32(count);
+
+
+           // int strlength = 0;
+            
+            for (int i = 0; i < count1; i++)
+            {
+                Dictionary<char, int> check = new Dictionary<char, int>();
+                for (char c = 'a'; c <= 'z'; c++)
+                {
+                    check.Add(c, 0);
+                }
+                String input1 = Console.ReadLine();
+                string input = input1.ToLower();
+                int countOutput = 0;
+                bool isOddLength = false;
+
+                char[] inputString = input.ToCharArray();
+
+               int strlength = input.Length;
+                int tuna = 0;
+
+                if (strlength % 2 == 0)
+                {
+                    tuna = strlength / 2;
+                }
+                else
+                {
+                    tuna = ((strlength + 1) / 2);
+                    isOddLength = true;
+                }
+                for (int z = 0; z < strlength; z++)
+                {
+                    char t = inputString[z];
+
+                    if (t != ' ')
+                    {
+                        if (z < tuna)
+                        {
+                            if (check.ContainsKey(t))
+
+                                check[t] += 1;
+                        }
+                        else
+                        {
+                            if (check.ContainsKey(t))
+
+                                check[t] -= 1;
+                            
+                        }
+
+
+                    }
+                }
+                foreach (var item in check)
+                {
+                    if (item.Value != 0)
+                    {
+                        countOutput += Math.Abs(item.Value);
+                    }
+                }
+                int countOutput1 = 0;
+                if (isOddLength == true)
+                {
+                    countOutput1 = ((strlength + 1) / 2 - countOutput);
+                }
+                else
+                {
+                    countOutput1 = (countOutput / 2);
+                }
+                Console.WriteLine(countOutput1);
+                Console.WriteLine("tittu");
+
+            }
+
+
+        }
+
+    }
+}
+

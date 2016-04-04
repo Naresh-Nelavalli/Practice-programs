@@ -1,0 +1,59 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Enrcyption
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            string count = Console.ReadLine();
+            int count1 = Convert.ToInt32(count);
+            int countOutput = 0;
+            Dictionary<char, int> check = new Dictionary<char, int>();
+            for (char c = 'a'; c <= 'z'; c++)
+            {
+                check.Add(c, 0);
+            }
+            for (int i = 0; i < count1; i++)
+            {
+                String input1 = Console.ReadLine();
+                string input = input1.ToLower();
+
+               
+                char[] inputString = input.ToCharArray();
+
+               
+                foreach (char t in inputString)
+                {
+                    if (t != ' ')
+                    {
+                        if (check.ContainsKey(t))
+                            if (check[t] == i)
+                                check[t] += 1;
+
+
+                    }
+                }
+                
+                foreach (var item in check)
+                {
+                    if (item.Value == count1)
+                    {
+                        countOutput += 1;
+                    }
+                }
+            }
+
+                Console.WriteLine(countOutput);
+                Console.WriteLine("tittu");
+           
+            
+        }
+
+    }
+}
+

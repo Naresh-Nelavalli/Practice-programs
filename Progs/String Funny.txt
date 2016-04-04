@@ -1,0 +1,63 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Enrcyption
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            string length = Console.ReadLine();
+            int nlength = Convert.ToInt32(length);
+
+            Actiondone ad = new Actiondone();
+            for (int i = 0; i < nlength; i++)
+            {
+                String input = Console.ReadLine();
+                bool output = ad.PerformComparision(input);
+                if (output == true)
+                {
+                    Console.WriteLine("Funny");
+
+                }
+                else
+                {
+                    Console.WriteLine("Not Funny");
+
+                }
+            }
+
+        }
+
+
+    }
+
+    class Actiondone
+    {
+        public bool PerformComparision(string input)
+        {
+            char[] revStringchar = input.ToCharArray();
+            char[] revStringchar1 = input.ToCharArray();
+            Array.Reverse(revStringchar);
+            string revString1 = new string(revStringchar);
+            char[] revStringchar2 = revString1.ToCharArray();
+            int t = input.Length;
+            for (int i = 0; i < t - 1; i++)
+            {
+                if (Math.Abs((int)revStringchar1[i + 1] - (int)revStringchar1[i]) == Math.Abs((int)revStringchar2[i + 1] - (int)revStringchar2[i]))
+                {
+                    continue;
+                }
+                else
+                {
+
+                    return false;
+                }
+            }
+            return true;
+        }
+    }
+}

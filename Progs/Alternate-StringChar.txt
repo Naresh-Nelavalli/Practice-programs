@@ -1,0 +1,73 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Enrcyption
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+
+            String inCount = Console.ReadLine();
+            int count = Convert.ToInt32(inCount);
+            for (int t = 0; t < count; t++)
+            {
+                String input1 = Console.ReadLine();
+                string input = input1.ToLower();
+               
+                int diffCount = 0;
+                bool Aoccurance = false;
+                bool Boccurance = false;
+                int i = 1;
+                char[] input2 = input.ToCharArray();
+                foreach (char c in input2)
+                {
+                    if (i == 1)
+                    {
+                        if (c == 'a')
+                            Aoccurance = true;
+                        else
+                            Boccurance = true;
+                    }
+                    else
+                    {
+                        if (c == 'a')
+                        {
+                            Aoccurance = true;
+                            if (Boccurance != true)
+                            {
+                            
+                                diffCount += 1;
+                            }
+                            Boccurance = false;
+                        }
+                        else
+                        {
+
+                            Boccurance = true;
+                            if (Aoccurance != true)
+                            {
+                            
+                                diffCount += 1;
+
+                            }
+                            Aoccurance = false;
+
+                        }
+                        
+                    }
+                    i += 1;
+                }
+                Console.WriteLine(diffCount);
+
+            }
+
+
+        }
+
+    }
+}
+

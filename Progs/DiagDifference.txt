@@ -1,0 +1,51 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Test1
+{
+    class Program
+    {
+        static void Main(String[] args)
+        {
+            /* Enter your code here. Read input from STDIN. Print output to STDOUT. Your class should be named Solution */
+            int sizeOfMatrix = 0;
+            int firstDiagSum = 0;
+            int secondDiagSum = 0;
+            String Input = Console.ReadLine();
+            sizeOfMatrix = Convert.ToInt32(Input);
+            int[,] Matrix = new int[sizeOfMatrix, sizeOfMatrix];
+            for (int i = 0; i < sizeOfMatrix; i++)
+            {
+               
+                 String[] t = Console.ReadLine().Split();
+                 for (int j = 0; j < sizeOfMatrix; j++)
+                 {
+                     int tt = Convert.ToInt32(t[j]);
+                     Matrix[i, j] = tt;
+                    
+                 }
+                
+            }
+
+            for(int i=0; i< sizeOfMatrix; i++ )
+            {
+                firstDiagSum = firstDiagSum + Matrix[i, i];
+
+            }
+
+            for (int i = 0; i < sizeOfMatrix; i++)
+            {
+                secondDiagSum = secondDiagSum + Matrix[i,sizeOfMatrix-i-1];
+
+            }
+
+            int finalOutput = Math.Abs(firstDiagSum - secondDiagSum);
+            Console.WriteLine(finalOutput);
+            
+        }
+    }
+}
+

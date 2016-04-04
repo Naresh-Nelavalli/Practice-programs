@@ -1,0 +1,108 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Enrcyption
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+
+            string inpLen = Console.ReadLine();
+            int number = Convert.ToInt32(inpLen);
+
+
+            for (int t = 0; t < number; t++)
+            {
+
+                string input = Console.ReadLine();
+                bool validPro = false;
+
+                int length = input.Length;
+                if (length == 1)
+                {
+                    Console.WriteLine("no answer");
+
+                }
+                else
+                {
+
+                    for (int h = 0; h < length - 1; h++)
+                    {
+                        if (input[h] < input[h + 1])
+                            validPro = true;
+
+
+                    }
+                    if (validPro == false)
+                        Console.WriteLine("no answer");
+                    else
+                    {
+
+                        char[] inputData = input.ToCharArray();
+
+                        string output = "";
+                        for (int i = length - 1; i > 0; i--)
+                        {
+                            char currChar = inputData[i];
+                            char currPChar = inputData[i - 1];
+                            if (currChar <= currPChar)
+                            {
+                                continue;
+                            }
+                            else
+                            {
+                                char temp = findNextBiggest(ref inputData, i - 1, length);
+                                string ting = new string(inputData);
+                                string newString = ting.Substring(i);
+                                char[] pitre = newString.ToCharArray();
+                                Array.Sort(pitre);
+                                output = ting.Substring(0, i - 1) + temp + new String(pitre);
+                                // Console.WriteLine(output);
+                                break;
+                            }
+                        }
+
+                        if (output == input)
+                            Console.WriteLine("no answer");
+                        else
+                            Console.WriteLine(output);
+                    }
+                }
+            }
+        }
+
+
+        static char findNextBiggest(ref Char[] inputData, int pos, int length)
+        {
+            char temp1 = inputData[pos];
+            char thuss;
+            int pos1=pos+1;
+            char temp2 = inputData[pos + 1];
+            for (int i = pos; i < length; i++)
+            {
+                if (temp1 < inputData[i])
+                {
+                    if (temp2 > inputData[i])
+                    {
+                        temp2 = inputData[i];
+                        pos1 = i;
+                    }
+
+                }
+            }
+
+            thuss = inputData[pos];
+            inputData[pos] = temp2;
+            inputData[pos1] = thuss;
+            return temp2;
+
+        }
+
+    }
+}
+
+

@@ -1,0 +1,72 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Enrcyption
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            string count = Console.ReadLine();
+            int count1 = Convert.ToInt32(count);
+            for (int i = 0; i < count1; i++)
+            {
+                Dictionary<char, int> check = new Dictionary<char, int>();
+                String input1 = Console.ReadLine();
+                string inputt1 = input1.ToLower();
+                String input2 = Console.ReadLine();
+                string inputt2 = input2.ToLower();
+                // int countOutput = 0;
+                char[] inputChar1 = inputt1.ToCharArray();
+                char[] inputChar2 = inputt2.ToCharArray();
+
+                foreach (char t in inputChar1)
+                {
+                    if (check.ContainsKey(t))
+                    {
+                        check[t] += 1;
+                    }
+                    else
+                    {
+                        check.Add(t, 1);
+                    }
+                }
+                foreach (char t in inputChar2)
+                {
+                    if (check.ContainsKey(t))
+                    {
+                        if(check[t] > 0)
+                            check[t] -= 1;
+                    }
+                    
+                }
+                bool isReq = false;
+                foreach (var item in check)
+                {
+                    if (item.Value == 0)
+                    {
+                        isReq = true;
+                        break;
+                    }
+                }
+
+                if(isReq==true)
+                {
+                    Console.WriteLine("YES");
+                }
+                else
+                {
+                    Console.WriteLine("NO");
+                }
+            }
+               
+
+
+        }
+
+    }
+}
+

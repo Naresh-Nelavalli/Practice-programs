@@ -1,0 +1,36 @@
+ int encryptByNum;
+            string number,input,output="";
+           number = Console.ReadLine();
+            encryptByNum = Convert.ToInt32(number);
+            encryptByNum = encryptByNum % 26;
+            input = Console.ReadLine();
+            char[] inputArray = input.ToCharArray();
+
+            foreach (char letter in inputArray)
+            {
+                int IntValue = (int)letter;
+                if (IntValue > 64 && IntValue < 91) 
+                {
+                    int ManipValue = IntValue + encryptByNum;
+                    if ( ManipValue > 90)
+                    {
+                        ManipValue = ManipValue - 26;
+                    }
+                    output= output + ((char)ManipValue);
+                   
+                }
+                 else if (IntValue > 96 && IntValue < 123)
+                {
+                    int ManipValue = IntValue + encryptByNum;
+                    if (ManipValue > 122)
+                    {
+                        ManipValue = ManipValue - 26;
+                    }
+                    output = output + ((char)ManipValue);
+                   
+                }
+                else
+                {
+                    output = output + letter;
+                }
+            }

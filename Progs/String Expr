@@ -1,0 +1,65 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Enrcyption
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+          
+           
+                String input1 = Console.ReadLine();
+                char[] delim = {  , ;, . };
+                string input1 = input.Split( );
+                string input = input1.ToLower();
+
+                Dictionarychar,int check= new Dictionarychar,int();
+                char[] inputString = input.ToCharArray();
+
+                 for (char c = 'a'; c = 'z'; c++)
+                {
+                    check.Add(c,0); 
+                } 
+                foreach(char t in inputString)
+                {
+                    if (t!=' ')
+                    {
+                        if (check.ContainsKey(t))
+
+                            check[t] += 1;
+                       
+
+                    }
+                }
+                bool isPangram = true;
+            foreach(var item in check)
+            {
+                if(item.Value  0)
+                {
+                    continue;
+                    
+                }
+                else
+                {
+                    Console.WriteLine(not pangram);
+                    isPangram = false;
+                    break;
+                }
+                
+            }
+            if(isPangram == true)
+            {
+                Console.WriteLine(pangram);
+            }
+
+            Console.WriteLine(tittu);
+            
+            }
+
+        }
+    }
+
