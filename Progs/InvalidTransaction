@@ -1,0 +1,43 @@
+class Solution {
+    public List<String> invalidTransactions(String[] transactions) {
+           List<String> resp= new LinkedList<>();
+        String[] names = new String[transactions.length];
+        int[] time = new int[transactions.length];
+        int[] amount = new int[transactions.length];
+        String[] place = new String[transactions.length];
+        int i =0;
+        for (String s : transactions){
+            String[] values = s.split(",");
+            names[i] = values[0];
+            time[i] = Integer.valueOf(values[1]);
+            amount[i] = Integer.valueOf(values[2]);
+            place[i] = values[3];
+            i++;
+        }
+
+
+        for(int k = 0; k< transactions.length;k++){
+            if (amount[k] > 1000){
+                resp.add(transactions[k]);
+            }
+            else {
+                for (int j = 0; j < transactions.length; j++) {
+                    if(j!=k) {
+                        if (names[k].equals(names[j])) {
+                            if (!place[k].equals(place[j])) {
+                                if (Math.abs(time[k] - time[j]) <= 60) {
+                                    resp.add(transactions[k]);
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+
+        return resp;
+        
+    }
+}
